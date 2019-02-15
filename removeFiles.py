@@ -8,7 +8,7 @@ import re
 
 #check arguments passed
 if len (sys.argv) < 2 :
-    print("Usage: python removeExeObjFiles.py folderpath filestype1 filetype2 \n example python removeExeObjFiles.py spoj/cpp .obj .exe .java")
+    print("Usage: python removeFiles.py folderpath filestype1 filetype2 \n example python removeFiles.py spoj/cpp .obj .exe .java")
     sys.exit(1)
 
 #set path
