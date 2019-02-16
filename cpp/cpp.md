@@ -58,3 +58,7 @@
 5. [Arrays](http://www.geeksforgeeks.org/arrays-in-c-language-set-1-introduction/)
     
     * [opaque pointer](https://www.geeksforgeeks.org/opaque-pointer/)
+    
+    * arr[i]     ==  *(arr + i)           //similar
+    * arr[i][j]  ==  *(*(arr + i) + j)
+    *

@@ -2,8 +2,7 @@
 using namespace std;
 #include<math.h>
 
-int isPrimeOptimized(int number){
-	
+int isPrimeOptimized(int number){	
 	int k = sqrt(number*1.0);
 	if (number % 2 == 0)
 		return 0;
