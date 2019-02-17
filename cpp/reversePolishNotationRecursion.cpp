@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-#include<math.h>
+
 
 
 //O(n) solution //doesnt work if brackets are not strictly followed
