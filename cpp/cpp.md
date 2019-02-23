@@ -62,3 +62,7 @@
     * arr[i]     ==  *(arr + i)           //similar
     * arr[i][j]  ==  *(*(arr + i) + j)
     *
+## [ASCI](https://ascii.cl/)    
+## [GNU GMP LIBRARY](https://gmplib.org/)
+
+https://users.cs.cf.ac.uk/Dave.Marshall/C/node18.html
