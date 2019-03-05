@@ -243,10 +243,10 @@
     
     * functions:
        1. myvector.erase (myvector.begin()+2,myvector.begin()+3);
-
        2.
        3. 
 
+	   
 
 ## [ASCI](https://ascii.cl/)    
 ## [GNU GMP LIBRARY](https://gmplib.org/)
