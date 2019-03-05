@@ -3,7 +3,7 @@
 
 /* CONSTRAINTS: number contains less than 1000000 digits,
                 Numbers are always displayed without leading zeros.
- */               
+ */
 
 /* TEST CASES:  INPUT     SOLUTION
                  808  -->818
@@ -19,8 +19,8 @@
                 00001---> 2
                 00000--->1
                 00099--->101
- */ 
- 
+ */
+
 /* ALGORITHM1:
           1.initialize front iterator and rear iterator they move in opposite directions
           2.do:
@@ -54,171 +54,153 @@
                     return       
                        
    */
- //COMPLEXITY: O(n) 0.03               MEMORY: 17M 
+//COMPLEXITY: O(n) 0.03               MEMORY: 17M
 
-//BY MOHANTEJA 
+//BY MOHANTEJA
 
 #include <iostream>
-#include<cstring>
+#include <cstring>
 
 using namespace std;
 
 //recursive increamenter , also returns length it increamented recursively example: 199'9' ---> '2'000 ,increamented length =3
-  int increamentDigitChar(char *Digit)
+int increamentDigitChar(char *Digit)
+{
+  if (Digit[0] == '9')
   {
-    if(Digit[0]=='9'){ 
-      Digit[0]='0' ; 
-
-      return 1 + increamentDigitChar(&Digit[-1]);
-      }
-    else {
-      Digit[0]+=1;
-    
-      return 0;
-    }
-
+    Digit[0] = '0';
+    return 1 + increamentDigitChar(&Digit[-1]);
   }
- 
- //makes second half of string equals first half 
- int makePalindrome(char *inputNum,int length){
-       int frontIndex=0,rearIndex=length-1;
-  
+  else
+  {
+    Digit[0] += 1;
+    return 0;
+  }
+}
 
-       while(frontIndex<=rearIndex)
-       {
-         inputNum[rearIndex]=inputNum[frontIndex];
-         frontIndex++;
-         rearIndex--;
-       }
+//makes second half of string equals first half
+int makePalindrome(char *inputNum, int length)
+{
+  int frontIndex = 0, rearIndex = length - 1;
 
-   return 0;
+  while (frontIndex <= rearIndex)
+  {
+    inputNum[rearIndex] = inputNum[frontIndex];
+    frontIndex++;
+    rearIndex--;
+  }
 
- }
-  
+  return 0;
+}
 
-
-
-  int nextPalindrome(char *inputNum,int length,int extraBitFlag){
-/* manipulates string to next palindrome 
+int nextPalindrome(char *inputNum, int length, int extraBitFlag)
+{
+  /* manipulates string to next palindrome 
    returns 1 if no carry takes place else 0 */
 
-      int frontIndex=0,rearIndex=length-1;
-      int alreadyPalindromeFlag=1,even01OddLen=length%2;
-  
-    //checks whether the number is a palindrome already 
-      while(frontIndex<=rearIndex){
+  int frontIndex = 0, rearIndex = length - 1;
+  int alreadyPalindromeFlag = 1, even01OddLen = length % 2;
 
-                if(inputNum[frontIndex]==inputNum[rearIndex])
-                    {
-                      rearIndex--;
-                      frontIndex++;
-                      continue;
-                    }
-                else if(inputNum[frontIndex]>inputNum[rearIndex])
-                    {
-                       inputNum[rearIndex]=inputNum[frontIndex];
-                       alreadyPalindromeFlag=0;
-                    }
-                else if(inputNum[frontIndex]<inputNum[rearIndex])
-                {
-                      alreadyPalindromeFlag=0;
-                      increamentDigitChar(&inputNum[rearIndex-1]);
-                      inputNum[rearIndex]=inputNum[frontIndex];
-                }
+  //checks whether the number is a palindrome already
+  while (frontIndex <= rearIndex)
+  {
 
-                rearIndex--;
-                frontIndex++;
-                
-      }
-          
+    if (inputNum[frontIndex] == inputNum[rearIndex])
+    {
+      rearIndex--;
+      frontIndex++;
+      continue;
+    }
+    else if (inputNum[frontIndex] > inputNum[rearIndex])
+    {
+      inputNum[rearIndex] = inputNum[frontIndex];
+      alreadyPalindromeFlag = 0;
+    }
+    else if (inputNum[frontIndex] < inputNum[rearIndex])
+    {
+      alreadyPalindromeFlag = 0;
+      increamentDigitChar(&inputNum[rearIndex - 1]);
+      inputNum[rearIndex] = inputNum[frontIndex];
+    }
 
-     if(alreadyPalindromeFlag){
-          //odd
-            if(even01OddLen)
-               {
-                  if(inputNum[length/2  ] !='9')
-                      {
-                        inputNum[length/2 ] +=1;
-                        return extraBitFlag ;     //extrabitspace available =1 not available =0
-                      }
-                   else
-                   {
-                      if(increamentDigitChar(&inputNum[length/2])==(length/2 + 1 ))
-                           return makePalindrome(&inputNum[-1],length+1);// extra bit space not available
-                      else
-                           return makePalindrome(inputNum,length)+1; //extra bit space available
-                     
-                   }
-                      
-               }
-               else
-               {
-                 /* even length */
-             
-                 if(inputNum[length/2] !='9')
-                      {
-                        inputNum[length/2] += 1;
-                        inputNum[length/2 -1 ] +=1;
-                        return 1;
-                      }
-                   else
-                   {
-                      if(increamentDigitChar(&inputNum[length/2])==(length/2 + 1))
-                           return makePalindrome(&inputNum[-1],length+1);
-                      else
-                           return makePalindrome(inputNum,length)+1;
-                     
-                   } 
-
-
-               }
-               
-
-        }
-        else  //not palindrome
-        {
-              return extraBitFlag;
-        }
-        
-  
-
-  
-
+    rearIndex--;
+    frontIndex++;
   }
 
-  int main() {
-	
-	// your code here
-	int testcases;
-	char *inputNum =(char*)malloc(sizeof(char)*1000002);
-    //memset(inputNum,'v',1000000);
-	cin >> testcases;
-	int i,length;
-    
-	while(testcases>0)
-	{
-	
+  if (alreadyPalindromeFlag)
+  {
+    //odd
+    if (even01OddLen)
+    {
+      if (inputNum[length / 2] != '9')
+      {
+        inputNum[length / 2] += 1;
+        return extraBitFlag; //extrabitspace available =1 not available =0
+      }
+      else
+      {
+        if (increamentDigitChar(&inputNum[length / 2]) == (length / 2 + 1))
+          return makePalindrome(&inputNum[-1], length + 1); // extra bit space not available
+        else
+          return makePalindrome(inputNum, length) + 1; //extra bit space available
+      }
+    }
+    else
+    {
+      /* even length */
 
-	  i=1;
-	  inputNum[0]='0';
-     cin >> &inputNum[1]; 
-     length=strlen(inputNum);
+      if (inputNum[length / 2] != '9')
+      {
+        inputNum[length / 2] += 1;
+        inputNum[length / 2 - 1] += 1;
+        return 1;
+      }
+      else
+      {
+        if (increamentDigitChar(&inputNum[length / 2]) == (length / 2 + 1))
+          return makePalindrome(&inputNum[-1], length + 1);
+        else
+          return makePalindrome(inputNum, length) + 1;
+      }
+    }
+  }
+  else //not palindrome
+  {
+    return extraBitFlag;
+  }
+}
 
-//remove trailling zeros 0001 ---->1 ,00000 ---->0
-     for(;inputNum[i]=='0';i++);
-     if(i==length) i--;
+int main()
+{
 
-//call next Palindrome
-     if(!nextPalindrome(&inputNum[i],length-i,1)) 
-          cout << &inputNum[i-1]; //extra bit
-     else 
-          cout << &inputNum[i]; //no extra bit
+  // your code here
+  int testcases;
+  char *inputNum = (char *)malloc(sizeof(char) * 1000002);
+  //memset(inputNum,'v',1000000);
+  cin >> testcases;
+  int i, length;
 
-	 testcases--;
-	 cout<<"\n" ;
-	}
+  while (testcases > 0)
+  {
 
-   
-	return 0;
-  
+    i = 1;
+    inputNum[0] = '0';
+    cin >> &inputNum[1];
+    length = strlen(inputNum);
+
+    //remove trailling zeros 0001 ---->1 ,00000 ---->0
+    for (; inputNum[i] == '0'; i++);
+    if (i == length) i--;
+
+    //call next Palindrome
+    if (!nextPalindrome(&inputNum[i], length - i, 1))
+      cout << &inputNum[i - 1]; //extra bit
+    else
+      cout << &inputNum[i]; //no extra bit
+
+    testcases--;
+    cout << "\n";
+  }
+
+  return 0;
 }
