@@ -248,10 +248,19 @@
 
 	   
 
+
+Links : 
+
+
+[microsoft c++ documentations](https://docs.microsoft.com/en-us/cpp/cpp/constructors-cpp?view=vs-2019)
+
 ## [ASCI](https://ascii.cl/)    
 ## [GNU GMP LIBRARY](https://gmplib.org/)
 
 https://users.cs.cf.ac.uk/Dave.Marshall/C/node18.html
+
+
+c++ io : (https://marcoarena.wordpress.com/2016/03/13/cpp-competitive-programming-io/)
 
 # visualcode 
    * beautify or format code : shft + alt + F
