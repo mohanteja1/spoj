@@ -30,7 +30,14 @@ print("regex=" + regex)
 
 fileTypeRegex = re.compile(regex)
 removingList = list(filter(fileTypeRegex.search, listofTotalFiles)) # Read Note
-print("the following list of files will be removed =" + str(removingList))
+print("the following list of files will be removed =" + str(removingList) + "\n Continue ? Y/N")
+
+# ask the user whether to delete the files shown
+deleteFlag = input()
+if deleteFlag.lower().__contains__('n'):
+    print("\nteriminating the process")
+    sys.exit(1)
+
 
 #remove the files
 
@@ -40,3 +47,5 @@ for File in removingList:
         print("file removed: " + str(File))
     except OSError as e:  ## if failed, report it back to the user ##
         print ("Error: %s - %s." % (e.filename, e.strerror))
+
+print("\n Deleted the files")
